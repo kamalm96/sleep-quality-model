@@ -12,3 +12,4 @@
 - Install dependencies: pip install -r requirements.txt.
 - Run train_model.py to train the model.
 - Use sleep-quality.py to make predictions with new data. (python sleep-quality.py)
+![image](https://github.com/user-attachments/assets/541715b3-fac9-44d9-a86f-71a607babf18)
