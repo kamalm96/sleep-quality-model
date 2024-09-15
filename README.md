@@ -1,5 +1,6 @@
 # Sleep Quality Prediction Model
 ## This project demonstrates a machine learning model to predict sleep quality based on user health and lifestyle data.
+### _Will be adding a way to use this model soon within a React project_
 
 ## Overview
 - Data Preparation: Cleaned and preprocessed data by converting time features (e.g., bedtime, wake-up time) to minutes past midnight, encoding categorical variables (e.g., gender, activity level), and normalizing numerical features (e.g., age, steps).
@@ -10,7 +11,6 @@
 ## How to Use
 - Clone the repository.
 - Install dependencies: pip install -r requirements.txt.
-- Run train_model.py to train the model.
-- Use sleep-quality.py to make predictions with new data. (python sleep-quality.py)
+- Run sleep-quality.py to train the model. (python sleep-quality.py)
 ## Training curve
 ![image](https://github.com/user-attachments/assets/541715b3-fac9-44d9-a86f-71a607babf18)
