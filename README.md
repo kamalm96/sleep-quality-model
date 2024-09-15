@@ -14,3 +14,6 @@
 - Run sleep-quality.py to train the model. (python sleep-quality.py)
 ## Training curve
 ![image](https://github.com/user-attachments/assets/541715b3-fac9-44d9-a86f-71a607babf18)
+
+
+# [Data From Kaggle By Han Aksoy](https://www.kaggle.com/datasets/hanaksoy/health-and-sleep-statistics/data)
