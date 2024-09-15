@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
-
+import matplotlib.pyplot as plt
 
 data = pd.read_csv("hsp.csv")
 
@@ -42,14 +42,12 @@ numerical_features = [
 ]
 data[numerical_features] = scaler.fit_transform(data[numerical_features])
 
-
 X = data.drop(["Sleep Quality", "User ID"], axis=1)
 y = data["Sleep Quality"]
 
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
 )
-
 
 model = Sequential(
     [
@@ -62,19 +60,38 @@ model = Sequential(
 model.compile(
     optimizer="adam", loss="mean_squared_error", metrics=["mean_absolute_error"]
 )
-history = model.fit(
-    X_train, y_train, validation_data=(X_test, y_test), epochs=100, batch_size=32
-)
+
+plt.ion()
+
+train_losses = []
+val_losses = []
+
+fig, ax = plt.subplots(figsize=(10, 5))
+
+for epoch in range(100):
+    history = model.fit(
+        X_train,
+        y_train,
+        validation_data=(X_test, y_test),
+        epochs=1,
+        batch_size=32,
+        verbose=0,
+    )
+
+    train_losses.append(history.history["loss"][0])
+    val_losses.append(history.history["val_loss"][0])
+
+    ax.clear()
+    ax.plot(train_losses, label="Train Loss")
+    ax.plot(val_losses, label="Validation Loss")
+    ax.set_xlabel("Epoch")
+    ax.set_ylabel("Loss")
+    ax.legend()
+    ax.set_title("Training and Validation Loss Over Epochs")
+    plt.pause(0.1)
+
+plt.ioff()
+plt.show()
 
 loss, mae = model.evaluate(X_test, y_test)
 print(f"Test Mean Absolute Error: {mae}")
-
-import matplotlib.pyplot as plt
-
-plt.plot(history.history["loss"], label="Train Loss")
-plt.plot(history.history["val_loss"], label="Val Loss")
-plt.xlabel("Epoch")
-plt.ylabel("Loss")
-plt.legend()
-plt.show()
-
